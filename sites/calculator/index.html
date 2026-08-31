@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Calculator Test App</title>
+  <style type="text/css">
+    body { margin: 0; padding: 45px 0; background: #eaf5ff; color: #17324d; font-family: Arial, Helvetica, sans-serif; text-align: center; }
+    .calculator { width: 320px; margin: 0 auto; padding: 22px; border: 2px solid #76a9d4; background: #ffffff; }
+    h1 { margin: 0 0 8px 0; color: #287fc0; font-size: 28px; }
+    p { margin: 0 0 18px 0; color: #526b82; }
+    #display { width: 286px; height: 45px; padding: 4px 8px; border: 2px solid #8fbbe8; background: #f8fbff; font-size: 27px; text-align: right; }
+    table { width: 100%; border-spacing: 6px; }
+    td { width: 25%; }
+    input.button { width: 100%; height: 48px; border: 1px solid #7593ad; background: #edf5fb; color: #172433; font-size: 21px; font-weight: bold; }
+    input.operator { background: #cfe9ff; color: #155f99; }
+    input.clear { background: #ffe1dd; color: #9b3529; }
+    input.equals { background: #287fc0; color: #ffffff; }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h1>Calculator</h1>
+    <p>Have a calculator test app</p>
+    <input id="display" type="text" value="0" readonly="readonly">
+    <table summary="Calculator buttons">
+      <tr>
+        <td><input class="button clear" type="button" value="C" onclick="document.getElementById('display').value='0';"></td>
+        <td><input class="button operator" type="button" value="(" onclick="var d=document.getElementById('display');d.value=d.value=='0'?'(':d.value+'(';"></td>
+        <td><input class="button operator" type="button" value=")" onclick="document.getElementById('display').value+=')';"></td>
+        <td><input class="button operator" type="button" value="/" onclick="document.getElementById('display').value+='/';"></td>
+      </tr>
+      <tr>
+        <td><input class="button" type="button" value="7" onclick="var d=document.getElementById('display');d.value=d.value=='0'?'7':d.value+'7';"></td>
+        <td><input class="button" type="button" value="8" onclick="var d=document.getElementById('display');d.value=d.value=='0'?'8':d.value+'8';"></td>
+        <td><input class="button" type="button" value="9" onclick="var d=document.getElementById('display');d.value=d.value=='0'?'9':d.value+'9';"></td>
+        <td><input class="button operator" type="button" value="x" onclick="document.getElementById('display').value+='*';"></td>
+      </tr>
+      <tr>
+        <td><input class="button" type="button" value="4" onclick="var d=document.getElementById('display');d.value=d.value=='0'?'4':d.value+'4';"></td>
+        <td><input class="button" type="button" value="5" onclick="var d=document.getElementById('display');d.value=d.value=='0'?'5':d.value+'5';"></td>
+        <td><input class="button" type="button" value="6" onclick="var d=document.getElementById('display');d.value=d.value=='0'?'6':d.value+'6';"></td>
+        <td><input class="button operator" type="button" value="-" onclick="document.getElementById('display').value+='-';"></td>
+      </tr>
+      <tr>
+        <td><input class="button" type="button" value="1" onclick="var d=document.getElementById('display');d.value=d.value=='0'?'1':d.value+'1';"></td>
+        <td><input class="button" type="button" value="2" onclick="var d=document.getElementById('display');d.value=d.value=='0'?'2':d.value+'2';"></td>
+        <td><input class="button" type="button" value="3" onclick="var d=document.getElementById('display');d.value=d.value=='0'?'3':d.value+'3';"></td>
+        <td><input class="button operator" type="button" value="+" onclick="document.getElementById('display').value+='+';"></td>
+      </tr>
+      <tr>
+        <td colspan="2"><input class="button" type="button" value="0" onclick="var d=document.getElementById('display');if(d.value!='0'){d.value+='0';}"></td>
+        <td><input class="button" type="button" value="." onclick="document.getElementById('display').value+='.';"></td>
+        <td><input class="button equals" type="button" value="=" onclick="var d=document.getElementById('display');try{if(!/^[0-9+\-*\/. ()]+$/.test(d.value)){throw 'bad';}d.value=eval(d.value);}catch(e){d.value='Error';}"></td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>
