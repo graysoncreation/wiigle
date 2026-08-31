@@ -93,6 +93,10 @@
   <div class="paint-app">
     <h1>Wii Paint</h1>
 
+    <input id="drawing" type="hidden" value="0">
+    <input id="lastX" type="hidden" value="0">
+    <input id="lastY" type="hidden" value="0">
+    <input id="moved" type="hidden" value="0">
     <input id="penColor" type="hidden" value="#000000">
     <input id="selectedColor" type="hidden" value="#000000">
     <input id="penSize" type="hidden" value="4">
@@ -144,7 +148,11 @@
     </div>
 
     <canvas id="paint" width="700" height="400"
-      onclick="var e=window.event||arguments[0];var r=this.getBoundingClientRect();var x=(e.clientX-r.left)*(this.width/r.width);var y=(e.clientY-r.top)*(this.height/r.height);var c=this.getContext('2d');var s=parseInt(document.getElementById('penSize').value,10);c.beginPath();c.arc(x,y,s,0,Math.PI*2,false);c.fillStyle=document.getElementById('penColor').value;c.fill();">
+      onmousedown="var e=window.event||arguments[0];var r=this.getBoundingClientRect();document.getElementById('drawing').value='1';document.getElementById('moved').value='0';document.getElementById('lastX').value=(e.clientX-r.left)*(this.width/r.width);document.getElementById('lastY').value=(e.clientY-r.top)*(this.height/r.height);"
+      onmousemove="if(document.getElementById('drawing').value=='1'){var e=window.event||arguments[0];var r=this.getBoundingClientRect();var x=(e.clientX-r.left)*(this.width/r.width);var y=(e.clientY-r.top)*(this.height/r.height);var c=this.getContext('2d');c.beginPath();c.moveTo(parseFloat(document.getElementById('lastX').value),parseFloat(document.getElementById('lastY').value));c.lineTo(x,y);c.strokeStyle=document.getElementById('penColor').value;c.lineWidth=parseInt(document.getElementById('penSize').value,10)*2;c.lineCap='round';c.lineJoin='round';c.stroke();document.getElementById('lastX').value=x;document.getElementById('lastY').value=y;document.getElementById('moved').value='1';}"
+      onmouseup="document.getElementById('drawing').value='0';"
+      onmouseout="document.getElementById('drawing').value='0';"
+      onclick="if(document.getElementById('moved').value=='0'){var e=window.event||arguments[0];var r=this.getBoundingClientRect();var x=(e.clientX-r.left)*(this.width/r.width);var y=(e.clientY-r.top)*(this.height/r.height);var c=this.getContext('2d');var s=parseInt(document.getElementById('penSize').value,10);c.beginPath();c.arc(x,y,s,0,Math.PI*2,false);c.fillStyle=document.getElementById('penColor').value;c.fill();}">
       Your browser does not support the drawing canvas.
     </canvas>
 
@@ -153,7 +161,7 @@
       &nbsp; | &nbsp;
       Thickness: <span id="thickness">Medium</span>
     </p>
-    <p class="status">Point at the canvas and press A to paint.</p>
+    <p class="status">Press A to place a dot, or hold A and move to draw.</p>
   </div>
 </body>
 </html>
