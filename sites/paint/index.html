@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Wii Paint</title>
+  <style type="text/css">
+    body {
+      margin: 0;
+      padding: 20px 8px;
+      background: #dff5ff;
+      color: #174b65;
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+    }
+    .paint-app {
+      width: 760px;
+      max-width: 96%;
+      margin: 0 auto;
+      padding: 18px;
+      border: 3px solid #55b9df;
+      background: #ffffff;
+    }
+    h1 {
+      margin: 0 0 14px 0;
+      color: #269fce;
+      font-size: 34px;
+    }
+    .toolbar {
+      margin-bottom: 12px;
+      padding: 10px;
+      border: 2px solid #9bd8ef;
+      background: #eefaff;
+    }
+    .section {
+      margin: 7px 0;
+    }
+    .label {
+      display: inline-block;
+      width: 95px;
+      font-weight: bold;
+      text-align: right;
+      vertical-align: middle;
+    }
+    button {
+      margin: 2px;
+      padding: 8px 12px;
+      border: 2px solid #56849a;
+      background: #e6f4fa;
+      color: #173f52;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      border-color: #1b84ad;
+      background: #cfefff;
+    }
+    .color {
+      width: 42px;
+      height: 36px;
+      padding: 0;
+      vertical-align: middle;
+    }
+    .black { background: #000000; }
+    .red { background: #e53935; }
+    .orange { background: #ff8c00; }
+    .yellow { background: #ffd800; }
+    .green { background: #21a447; }
+    .blue { background: #168be0; }
+    .purple { background: #7b35c8; }
+    .pink { background: #f05ba7; }
+    .brown { background: #8a512b; }
+    #paint {
+      display: block;
+      width: 700px;
+      height: 400px;
+      max-width: 100%;
+      margin: 0 auto;
+      border: 3px solid #47798f;
+      background: #ffffff;
+      cursor: crosshair;
+    }
+    .status {
+      margin: 12px 0 0 0;
+      color: #35697e;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="paint-app">
+    <h1>Wii Paint</h1>
+
+    <input id="drawing" type="hidden" value="0">
+    <input id="lastX" type="hidden" value="0">
+    <input id="lastY" type="hidden" value="0">
+    <input id="penColor" type="hidden" value="#000000">
+    <input id="selectedColor" type="hidden" value="#000000">
+    <input id="penSize" type="hidden" value="4">
+
+    <div class="toolbar">
+      <div class="section">
+        <span class="label">Color:</span>
+        <button class="color black" type="button" title="Black"
+          onclick="document.getElementById('penColor').value='#000000';document.getElementById('selectedColor').value='#000000';document.getElementById('mode').innerHTML='Pen: Black';">&nbsp;</button>
+        <button class="color red" type="button" title="Red"
+          onclick="document.getElementById('penColor').value='#e53935';document.getElementById('selectedColor').value='#e53935';document.getElementById('mode').innerHTML='Pen: Red';">&nbsp;</button>
+        <button class="color orange" type="button" title="Orange"
+          onclick="document.getElementById('penColor').value='#ff8c00';document.getElementById('selectedColor').value='#ff8c00';document.getElementById('mode').innerHTML='Pen: Orange';">&nbsp;</button>
+        <button class="color yellow" type="button" title="Yellow"
+          onclick="document.getElementById('penColor').value='#ffd800';document.getElementById('selectedColor').value='#ffd800';document.getElementById('mode').innerHTML='Pen: Yellow';">&nbsp;</button>
+        <button class="color green" type="button" title="Green"
+          onclick="document.getElementById('penColor').value='#21a447';document.getElementById('selectedColor').value='#21a447';document.getElementById('mode').innerHTML='Pen: Green';">&nbsp;</button>
+        <button class="color blue" type="button" title="Blue"
+          onclick="document.getElementById('penColor').value='#168be0';document.getElementById('selectedColor').value='#168be0';document.getElementById('mode').innerHTML='Pen: Blue';">&nbsp;</button>
+        <button class="color purple" type="button" title="Purple"
+          onclick="document.getElementById('penColor').value='#7b35c8';document.getElementById('selectedColor').value='#7b35c8';document.getElementById('mode').innerHTML='Pen: Purple';">&nbsp;</button>
+        <button class="color pink" type="button" title="Pink"
+          onclick="document.getElementById('penColor').value='#f05ba7';document.getElementById('selectedColor').value='#f05ba7';document.getElementById('mode').innerHTML='Pen: Pink';">&nbsp;</button>
+        <button class="color brown" type="button" title="Brown"
+          onclick="document.getElementById('penColor').value='#8a512b';document.getElementById('selectedColor').value='#8a512b';document.getElementById('mode').innerHTML='Pen: Brown';">&nbsp;</button>
+      </div>
+
+      <div class="section">
+        <span class="label">Thickness:</span>
+        <button type="button"
+          onclick="document.getElementById('penSize').value='2';document.getElementById('thickness').innerHTML='Thin';">Thin</button>
+        <button type="button"
+          onclick="document.getElementById('penSize').value='4';document.getElementById('thickness').innerHTML='Medium';">Medium</button>
+        <button type="button"
+          onclick="document.getElementById('penSize').value='8';document.getElementById('thickness').innerHTML='Thick';">Thick</button>
+        <button type="button"
+          onclick="document.getElementById('penSize').value='16';document.getElementById('thickness').innerHTML='Extra Thick';">Extra Thick</button>
+      </div>
+
+      <div class="section">
+        <span class="label">Tool:</span>
+        <button type="button"
+          onclick="document.getElementById('penColor').value=document.getElementById('selectedColor').value;document.getElementById('mode').innerHTML='Pen Mode';">Pen Mode</button>
+        <button type="button"
+          onclick="document.getElementById('penColor').value='#ffffff';document.getElementById('mode').innerHTML='Eraser Mode';">Eraser Mode</button>
+        <button type="button"
+          onclick="var c=document.getElementById('paint');c.getContext('2d').clearRect(0,0,c.width,c.height);document.getElementById('mode').innerHTML='Canvas Cleared';">Clear</button>
+      </div>
+    </div>
+
+    <canvas id="paint" width="700" height="400"
+      onmousedown="var r=this.getBoundingClientRect();var sx=this.width/r.width;var sy=this.height/r.height;document.getElementById('drawing').value='1';document.getElementById('lastX').value=(event.clientX-r.left)*sx;document.getElementById('lastY').value=(event.clientY-r.top)*sy;"
+      onmousemove="if(document.getElementById('drawing').value=='1'){var r=this.getBoundingClientRect();var sx=this.width/r.width;var sy=this.height/r.height;var x=(event.clientX-r.left)*sx;var y=(event.clientY-r.top)*sy;var c=this.getContext('2d');c.beginPath();c.moveTo(parseFloat(document.getElementById('lastX').value),parseFloat(document.getElementById('lastY').value));c.lineTo(x,y);c.strokeStyle=document.getElementById('penColor').value;c.lineWidth=parseInt(document.getElementById('penSize').value,10);c.lineCap='round';c.lineJoin='round';c.stroke();document.getElementById('lastX').value=x;document.getElementById('lastY').value=y;}"
+      onmouseup="document.getElementById('drawing').value='0';"
+      onmouseout="document.getElementById('drawing').value='0';">
+      Your browser does not support the drawing canvas.
+    </canvas>
+
+    <p class="status">
+      Tool: <span id="mode">Pen Mode</span>
+      &nbsp; | &nbsp;
+      Thickness: <span id="thickness">Medium</span>
+    </p>
+  </div>
+</body>
+</html>
