@@ -1,0 +1,93 @@
+html, body { margin: 0; padding: 0; }
+body {
+  color: #202020;
+  background: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.35;
+}
+a { color: #0000cc; }
+a:visited { color: #551a8b; }
+a:hover { color: #0086b3; }
+.page { width: 92%; margin: 0 auto; }
+.topbar {
+  margin: 0 0 18px 0;
+  padding: 8px 4%;
+  border-bottom: 1px solid #c9c9c9;
+  background: #f2f2f2;
+  text-align: right;
+  font-size: 12px;
+  color: #666666;
+}
+.logo {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 58px;
+  font-weight: bold;
+  line-height: 1;
+  letter-spacing: -4px;
+}
+.w1 { color: #1f78d1; }
+.w2 { color: #d83b31; }
+.w3 { color: #efb51b; }
+.w4 { color: #1f78d1; }
+.w5 { color: #3a9b43; }
+.w6 { color: #d83b31; }
+.tagline { margin: 7px 0 22px 0; color: #777777; font-size: 13px; }
+.searchbox {
+  width: 65%;
+  min-width: 280px;
+  padding: 7px;
+  border: 2px solid #8fbbe8;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 19px;
+}
+.button {
+  margin-left: 4px;
+  padding: 7px 14px;
+  border: 1px solid #888888;
+  background: #eeeeee;
+  color: #111111;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+.footer {
+  margin-top: 45px;
+  padding: 12px 0 30px 0;
+  border-top: 1px solid #dddddd;
+  color: #777777;
+  font-size: 12px;
+  text-align: center;
+}
+.home { margin-top: 110px; text-align: center; }
+.home-form { margin-top: 20px; }
+.hint { margin-top: 16px; color: #777777; font-size: 12px; }
+.hidden { display: none; }
+.search-head {
+  padding: 12px 4%;
+  border-bottom: 1px solid #b9cce0;
+  background: #edf4fc;
+}
+.logo-cell { width: 155px; vertical-align: middle; }
+.form-cell { vertical-align: middle; }
+.small-logo { font-size: 31px; letter-spacing: -2px; }
+.logo-link { text-decoration: none; }
+.status { margin: 10px 0 22px 0; color: #666666; font-size: 13px; }
+.results { width: 72%; min-width: 480px; }
+.result { margin: 0 0 24px 0; }
+.result-title { font-size: 19px; }
+.result-url { margin: 2px 0; color: #247b24; font-size: 13px; word-wrap: break-word; }
+.result-snippet { color: #333333; font-size: 14px; }
+.pager { margin: 32px 0; font-size: 16px; }
+.pager a { margin-right: 24px; }
+.notice {
+  margin: 20px 0;
+  padding: 10px;
+  border: 1px solid #e3c760;
+  background: #fffbe5;
+  color: #5a4b12;
+}
+@media handheld {
+  body { font-size: 18px; }
+  .searchbox { width: 60%; }
+}

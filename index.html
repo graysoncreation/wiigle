@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="description" content="Wiigle - simple Wikipedia search for the Wii Internet Channel">
+  <title>Wiigle</title>
+  <link rel="stylesheet" type="text/css" href="./wiigle.css">
+</head>
+<body>
+  <div class="topbar">Simple Encyclopedia Search for Wii</div>
+  <div id="home-page" class="page home">
+    <h1 class="logo"><span class="w1">W</span><span class="w2">i</span><span class="w3">i</span><span class="w4">g</span><span class="w5">l</span><span class="w6">e</span></h1>
+    <p class="tagline">Knowledge, Wii-sized.</p>
+    <form class="home-form" action="./" method="get" onsubmit="return wiigleSearch(1);">
+      <div>
+        <input id="home-query" class="searchbox" type="text" name="q" value="" maxlength="200">
+        <input class="button" type="submit" value="Wiigle Search">
+      </div>
+    </form>
+    <p class="hint">Text-only results from Wikipedia. No images, video, or plug-ins.</p>
+    <div class="footer">Wiigle is an independent project and is not affiliated with Google or Wikipedia.</div>
+  </div>
+
+  <div id="results-page" class="hidden">
+    <div class="search-head">
+      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td class="logo-cell">
+            <a href="./" onclick="return wiigleHome();" class="logo-link"><span class="logo small-logo"><span class="w1">W</span><span class="w2">i</span><span class="w3">i</span><span class="w4">g</span><span class="w5">l</span><span class="w6">e</span></span></a>
+          </td>
+          <td class="form-cell">
+            <form action="./" method="get" onsubmit="return wiigleSearch(1);">
+              <div>
+                <input id="results-query" class="searchbox" type="text" name="q" value="" maxlength="200">
+                <input class="button" type="submit" value="Search">
+              </div>
+            </form>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="page">
+      <p id="status" class="status"></p>
+      <div id="notice" class="notice hidden"></div>
+      <div id="results" class="results"></div>
+      <div id="pager" class="pager"></div>
+      <div class="footer"><a href="./" onclick="return wiigleHome();">Wiigle Home</a> &middot; Text-only results from Wikipedia</div>
+    </div>
+  </div>
+  <script type="text/javascript" src="./wiigle.js"></script>
+</body>
+</html>
