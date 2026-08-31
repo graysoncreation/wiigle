@@ -81,6 +81,7 @@
       border: 3px solid #47798f;
       background: #ffffff;
       cursor: pointer;
+      touch-action: none;
     }
     .status {
       margin: 12px 0 0 0;
@@ -94,6 +95,7 @@
     <h1>Wii Paint</h1>
 
     <input id="drawing" type="hidden" value="0">
+    <input id="wiiDrawing" type="hidden" value="0">
     <input id="lastX" type="hidden" value="0">
     <input id="lastY" type="hidden" value="0">
     <input id="moved" type="hidden" value="0">
@@ -145,14 +147,25 @@
         <button type="button"
           onclick="var c=document.getElementById('paint');c.getContext('2d').clearRect(0,0,c.width,c.height);document.getElementById('mode').innerHTML='Canvas Cleared';">Clear</button>
       </div>
+
+      <div class="section">
+        <span class="label">Wii:</span>
+        <button id="wiiModeButton" type="button"
+          onclick="var w=document.getElementById('wiiDrawing');if(w.value=='0'){w.value='1';this.innerHTML='Stop Wii Drawing';document.getElementById('mode').innerHTML='Wii Draw Mode On';}else{w.value='0';this.innerHTML='Start Wii Drawing';document.getElementById('mode').innerHTML='Wii Draw Mode Off';}">
+          Start Wii Drawing
+        </button>
+      </div>
     </div>
 
     <canvas id="paint" width="700" height="400"
       onmousedown="var e=window.event||arguments[0];var r=this.getBoundingClientRect();document.getElementById('drawing').value='1';document.getElementById('moved').value='0';document.getElementById('lastX').value=(e.clientX-r.left)*(this.width/r.width);document.getElementById('lastY').value=(e.clientY-r.top)*(this.height/r.height);"
-      onmousemove="if(document.getElementById('drawing').value=='1'){var e=window.event||arguments[0];var r=this.getBoundingClientRect();var x=(e.clientX-r.left)*(this.width/r.width);var y=(e.clientY-r.top)*(this.height/r.height);var c=this.getContext('2d');c.beginPath();c.moveTo(parseFloat(document.getElementById('lastX').value),parseFloat(document.getElementById('lastY').value));c.lineTo(x,y);c.strokeStyle=document.getElementById('penColor').value;c.lineWidth=parseInt(document.getElementById('penSize').value,10)*2;c.lineCap='round';c.lineJoin='round';c.stroke();document.getElementById('lastX').value=x;document.getElementById('lastY').value=y;document.getElementById('moved').value='1';}"
+      onmousemove="if(document.getElementById('drawing').value=='1'||document.getElementById('wiiDrawing').value=='1'){var e=window.event||arguments[0];var r=this.getBoundingClientRect();var x=(e.clientX-r.left)*(this.width/r.width);var y=(e.clientY-r.top)*(this.height/r.height);var c=this.getContext('2d');if(document.getElementById('wiiDrawing').value=='1'&&document.getElementById('drawing').value!='1'){document.getElementById('lastX').value=x;document.getElementById('lastY').value=y;document.getElementById('drawing').value='2';}else{c.beginPath();c.moveTo(parseFloat(document.getElementById('lastX').value),parseFloat(document.getElementById('lastY').value));c.lineTo(x,y);c.strokeStyle=document.getElementById('penColor').value;c.lineWidth=parseInt(document.getElementById('penSize').value,10)*2;c.lineCap='round';c.lineJoin='round';c.stroke();document.getElementById('lastX').value=x;document.getElementById('lastY').value=y;document.getElementById('moved').value='1';}}"
       onmouseup="document.getElementById('drawing').value='0';"
-      onmouseout="document.getElementById('drawing').value='0';"
-      onclick="if(document.getElementById('moved').value=='0'){var e=window.event||arguments[0];var r=this.getBoundingClientRect();var x=(e.clientX-r.left)*(this.width/r.width);var y=(e.clientY-r.top)*(this.height/r.height);var c=this.getContext('2d');var s=parseInt(document.getElementById('penSize').value,10);c.beginPath();c.arc(x,y,s,0,Math.PI*2,false);c.fillStyle=document.getElementById('penColor').value;c.fill();}">
+      onmouseout="if(document.getElementById('wiiDrawing').value=='0'){document.getElementById('drawing').value='0';}"
+      onclick="if(document.getElementById('moved').value=='0'){var e=window.event||arguments[0];var r=this.getBoundingClientRect();var x=(e.clientX-r.left)*(this.width/r.width);var y=(e.clientY-r.top)*(this.height/r.height);var c=this.getContext('2d');var s=parseInt(document.getElementById('penSize').value,10);c.beginPath();c.arc(x,y,s,0,Math.PI*2,false);c.fillStyle=document.getElementById('penColor').value;c.fill();}"
+      ontouchstart="var e=arguments[0];if(e.preventDefault){e.preventDefault();}var t=e.touches[0];var r=this.getBoundingClientRect();document.getElementById('drawing').value='1';document.getElementById('moved').value='0';document.getElementById('lastX').value=(t.clientX-r.left)*(this.width/r.width);document.getElementById('lastY').value=(t.clientY-r.top)*(this.height/r.height);"
+      ontouchmove="var e=arguments[0];if(e.preventDefault){e.preventDefault();}if(document.getElementById('drawing').value=='1'){var t=e.touches[0];var r=this.getBoundingClientRect();var x=(t.clientX-r.left)*(this.width/r.width);var y=(t.clientY-r.top)*(this.height/r.height);var c=this.getContext('2d');c.beginPath();c.moveTo(parseFloat(document.getElementById('lastX').value),parseFloat(document.getElementById('lastY').value));c.lineTo(x,y);c.strokeStyle=document.getElementById('penColor').value;c.lineWidth=parseInt(document.getElementById('penSize').value,10)*2;c.lineCap='round';c.lineJoin='round';c.stroke();document.getElementById('lastX').value=x;document.getElementById('lastY').value=y;document.getElementById('moved').value='1';}"
+      ontouchend="var e=arguments[0];if(e.preventDefault){e.preventDefault();}if(document.getElementById('moved').value=='0'){var c=this.getContext('2d');var x=parseFloat(document.getElementById('lastX').value);var y=parseFloat(document.getElementById('lastY').value);var s=parseInt(document.getElementById('penSize').value,10);c.beginPath();c.arc(x,y,s,0,Math.PI*2,false);c.fillStyle=document.getElementById('penColor').value;c.fill();}document.getElementById('drawing').value='0';">
       Your browser does not support the drawing canvas.
     </canvas>
 
@@ -161,7 +174,8 @@
       &nbsp; | &nbsp;
       Thickness: <span id="thickness">Medium</span>
     </p>
-    <p class="status">Press A to place a dot, or hold A and move to draw.</p>
+    <p class="status">Computer: hold the mouse button and drag. Mobile: drag your finger.</p>
+    <p class="status">Wii: choose Start Wii Drawing, move the pointer over the canvas, then choose Stop Wii Drawing.</p>
   </div>
 </body>
 </html>
