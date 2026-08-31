@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="description" content="Wiithub - run small websites by ID on Nintendo Wii">
+  <title>Wiithub</title>
+  <style type="text/css">
+    html, body { margin: 0; padding: 0; }
+    body {
+      color: #202020;
+      background: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+    .top {
+      padding: 9px 4%;
+      border-bottom: 1px solid #c9c9c9;
+      background: #f1f1f1;
+      color: #666666;
+      text-align: right;
+      font-size: 12px;
+    }
+    .page {
+      width: 90%;
+      margin: 105px auto 0 auto;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+      color: #202020;
+      font-size: 56px;
+      letter-spacing: -4px;
+    }
+    .hub { color: #287fc0; }
+    .tagline { margin: 7px 0 28px 0; color: #777777; font-size: 14px; }
+    .idbox {
+      width: 55%;
+      min-width: 260px;
+      padding: 9px;
+      border: 2px solid #8fbbe8;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 21px;
+    }
+    .button {
+      margin-left: 5px;
+      padding: 9px 20px;
+      border: 1px solid #777777;
+      background: #eeeeee;
+      color: #111111;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .studio {
+      margin-top: 52px;
+      padding-top: 22px;
+      border-top: 1px solid #dddddd;
+    }
+    .studio-button {
+      display: inline-block;
+      padding: 9px 17px;
+      border: 1px solid #777777;
+      background: #eeeeee;
+      color: #0000cc;
+      font-weight: bold;
+    }
+    .warning {
+      margin-top: 10px;
+      color: #9b3f1b;
+      font-size: 12px;
+    }
+    .footer { margin-top: 55px; color: #888888; font-size: 11px; }
+  </style>
+</head>
+<body>
+  <div class="top">Simple Site Runner for Wii</div>
+  <div class="page">
+    <h1>Wii<span class="hub">thub</span></h1>
+    <p class="tagline">Enter a site ID and run it.</p>
+    <form action="/api/wiithub/open" method="get">
+      <div>
+        <input class="idbox" type="text" name="id" maxlength="32">
+        <input class="button" type="submit" value="Run">
+      </div>
+    </form>
+
+    <div class="studio">
+      <a class="studio-button" href="./studio.html">Open Studio — Modern Browsers Only</a>
+      <p class="warning"><strong>Studio does not work in the Wii Internet Channel.</strong></p>
+    </div>
+    <div class="footer">Wiithub runs small static HTML websites published through Studio.</div>
+  </div>
+</body>
+</html>

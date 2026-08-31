@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/wiithub/"
+title = "Wiithub"
+description = "A Wii-compatible static site runner with a modern browser Studio for publishing uploaded web pages under memorable IDs."
+version = "1.0.0"
+id = "artifacts/wiithub"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/wiithub/" ]
+localPort = 22043
+
+[services.development]
+run = "pnpm --filter @workspace/wiithub run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/wiithub", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/wiithub/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22043"
+BASE_PATH = "/wiithub/"
