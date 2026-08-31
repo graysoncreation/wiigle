@@ -80,7 +80,7 @@
       margin: 0 auto;
       border: 3px solid #47798f;
       background: #ffffff;
-      cursor: crosshair;
+      cursor: pointer;
     }
     .status {
       margin: 12px 0 0 0;
@@ -93,9 +93,6 @@
   <div class="paint-app">
     <h1>Wii Paint</h1>
 
-    <input id="drawing" type="hidden" value="0">
-    <input id="lastX" type="hidden" value="0">
-    <input id="lastY" type="hidden" value="0">
     <input id="penColor" type="hidden" value="#000000">
     <input id="selectedColor" type="hidden" value="#000000">
     <input id="penSize" type="hidden" value="4">
@@ -147,10 +144,7 @@
     </div>
 
     <canvas id="paint" width="700" height="400"
-      onmousedown="var r=this.getBoundingClientRect();var sx=this.width/r.width;var sy=this.height/r.height;document.getElementById('drawing').value='1';document.getElementById('lastX').value=(event.clientX-r.left)*sx;document.getElementById('lastY').value=(event.clientY-r.top)*sy;"
-      onmousemove="if(document.getElementById('drawing').value=='1'){var r=this.getBoundingClientRect();var sx=this.width/r.width;var sy=this.height/r.height;var x=(event.clientX-r.left)*sx;var y=(event.clientY-r.top)*sy;var c=this.getContext('2d');c.beginPath();c.moveTo(parseFloat(document.getElementById('lastX').value),parseFloat(document.getElementById('lastY').value));c.lineTo(x,y);c.strokeStyle=document.getElementById('penColor').value;c.lineWidth=parseInt(document.getElementById('penSize').value,10);c.lineCap='round';c.lineJoin='round';c.stroke();document.getElementById('lastX').value=x;document.getElementById('lastY').value=y;}"
-      onmouseup="document.getElementById('drawing').value='0';"
-      onmouseout="document.getElementById('drawing').value='0';">
+      onclick="var e=window.event||arguments[0];var r=this.getBoundingClientRect();var x=(e.clientX-r.left)*(this.width/r.width);var y=(e.clientY-r.top)*(this.height/r.height);var c=this.getContext('2d');var s=parseInt(document.getElementById('penSize').value,10);c.beginPath();c.arc(x,y,s,0,Math.PI*2,false);c.fillStyle=document.getElementById('penColor').value;c.fill();">
       Your browser does not support the drawing canvas.
     </canvas>
 
@@ -159,6 +153,7 @@
       &nbsp; | &nbsp;
       Thickness: <span id="thickness">Medium</span>
     </p>
+    <p class="status">Point at the canvas and press A to paint.</p>
   </div>
 </body>
 </html>
