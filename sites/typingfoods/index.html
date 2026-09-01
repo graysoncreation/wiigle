@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Typing Foods</title>
+  <style type="text/css">
+    body {
+      margin: 0;
+      padding: 30px 10px;
+      background: #fff1c7;
+      color: #542c16;
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+    }
+    .game {
+      width: 650px;
+      max-width: 92%;
+      margin: 0 auto;
+      padding: 24px;
+      border: 4px solid #e56b24;
+      background: #ffffff;
+    }
+    h1 {
+      margin: 0 0 8px 0;
+      color: #d94b28;
+      font-size: 38px;
+    }
+    .instructions {
+      margin: 0 0 18px 0;
+      color: #78513c;
+      font-size: 17px;
+    }
+    .stats {
+      width: 100%;
+      margin-bottom: 18px;
+      border-collapse: collapse;
+    }
+    .stats td {
+      width: 33%;
+      padding: 10px 4px;
+      border: 2px solid #f0b36e;
+      background: #fff8e8;
+      font-size: 19px;
+      font-weight: bold;
+    }
+    .timer {
+      color: #c73528;
+    }
+    .food-box {
+      margin: 16px 0;
+      padding: 22px 10px;
+      border: 3px solid #ef8d32;
+      background: #fff4d8;
+    }
+    .food-label {
+      margin-bottom: 7px;
+      color: #795139;
+      font-size: 17px;
+    }
+    #food {
+      color: #d94b28;
+      font-size: 42px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    #answers {
+      width: 100%;
+      border-spacing: 9px;
+    }
+    #answers td {
+      width: 50%;
+    }
+    .answer {
+      width: 100%;
+      min-height: 58px;
+      padding: 10px 6px;
+      border: 3px solid #df7527;
+      background: #ffad42;
+      color: #542600;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .answer:hover {
+      background: #ffd064;
+    }
+    #message {
+      min-height: 28px;
+      margin: 13px 0 0 0;
+      color: #166b3b;
+      font-size: 19px;
+      font-weight: bold;
+    }
+    #startButton {
+      padding: 14px 28px;
+      border: 3px solid #a93a24;
+      background: #e95531;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 22px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body onload="var gameScript=document.createElement('script');gameScript.type='text/javascript';gameScript.src='game.js';document.body.appendChild(gameScript);">
+  <div class="game">
+    <h1>Typing Foods</h1>
+    <p class="instructions">Choose an ingredient that is in the food. Get 10 correct answers to win!</p>
+
+    <table class="stats" summary="Game statistics">
+      <tr>
+        <td>Score: <span id="score">0</span></td>
+        <td>Correct: <span id="correct">0</span>/10</td>
+        <td class="timer">Time: <span id="time">15</span></td>
+      </tr>
+    </table>
+
+    <div id="playArea">
+      <div class="food-box">
+        <div class="food-label">Which ingredient is in...</div>
+        <div id="food">READY?</div>
+      </div>
+
+      <table id="answers" summary="Ingredient answers">
+        <tr>
+          <td><button id="answer0" class="answer" type="button" disabled="disabled">Answer 1</button></td>
+          <td><button id="answer1" class="answer" type="button" disabled="disabled">Answer 2</button></td>
+        </tr>
+        <tr>
+          <td><button id="answer2" class="answer" type="button" disabled="disabled">Answer 3</button></td>
+          <td><button id="answer3" class="answer" type="button" disabled="disabled">Answer 4</button></td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="message">Press Start Game to begin.</div>
+    <p><button id="startButton" type="button">Start Game</button></p>
+  </div>
+</body>
+</html>
